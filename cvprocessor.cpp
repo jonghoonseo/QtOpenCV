@@ -2,8 +2,11 @@
 
 #include <QDebug>
 
+#include <utils.h>
+
 CVProcessor::CVProcessor(QObject *parent) : QObject(parent)
 {
+
 }
 
 
@@ -16,21 +19,9 @@ void CVProcessor::setFileName(const QString &fileName)
     emit fileNameChanged();
 
     // Load an image
-    m_cvimage = cv::imread("/home/jseo/ChannelAdded.png", cv::IMREAD_GRAYSCALE);
-    m_qimage = QImage(m_cvimage.data, m_cvimage.cols, m_cvimage.rows, QImage::Format_RGB888);
-    m_image = QPixmap::fromImage(m_qimage);
-    emit imageChanged();
+    cv::String name = Utils::toStdString(fileName.right(fileName.length() - 7));
+    m_cvimage = cv::imread(name, cv::IMREAD_COLOR);
+    m_qimage = Utils::cvMat2QImage(m_cvimage);
+
     emit qimageChanged();
-}
-
-void CVProcessor::setImageObject(const QVariant &imageObject)
-{
-    if (imageObject == m_imageObject)
-        return;
-
-    qDebug() << imageObject.typeName();
-
-    m_imageObject = imageObject;
-    emit imageObjectChanged();
-
 }

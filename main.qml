@@ -26,6 +26,8 @@ ApplicationWindow {
 
     CVProcessor {
         id: cvProcessor
+
+
     }
 
     CVCanvas {
@@ -33,7 +35,7 @@ ApplicationWindow {
         width: 640
         height: 480
 
-        pixmap: cvProcessor.qimage
+        image: cvProcessor.qimage
     }
 
     FileDialog {

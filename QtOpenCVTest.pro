@@ -1,12 +1,13 @@
 TEMPLATE = app
 
-QT += qml quick widgets
+QT += qml quick widgets gui
 
 CONFIG += c++11
 
 SOURCES += main.cpp \
     cvprocessor.cpp \
-    cvcanvas.cpp
+    cvcanvas.cpp \
+    utils.cpp
 
 RESOURCES += qml.qrc
 # Additional import path used to resolve QML modules in Qt Creator's code model
@@ -19,7 +20,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     cvprocessor.h \
-    cvcanvas.h
+    cvcanvas.h \
+    utils.h
 
 unix{
 
